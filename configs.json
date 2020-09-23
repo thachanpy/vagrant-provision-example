@@ -1,0 +1,39 @@
+{
+    "provider": "virtualbox",
+    "os": "centos/7",
+    "username": "thachanpy",
+    "vm": [
+        {
+            "name": "salt-minion",
+            "count": 2,
+            "cpu": 1,
+            "memory": 1024,
+            "custom_scripts": [
+                "minion.sh"
+            ],
+            "first_ip": "172.16.1.21"
+        },
+        {
+            "name": "salt-master",
+            "count": 1,
+            "cpu": 1,
+            "memory": 512,
+            "custom_scripts": [
+                "master.sh"
+            ],
+            "first_ip": "172.16.1.11"
+        }
+    ],
+    "linked_clones": true,
+    "network": {
+        "network_type": "private_network",
+        "netmask": "255.255.255.0"
+    },
+    "files": {
+        "ssh_public_key": "id_rsa.pub"
+    },
+    "scripts": {
+        "base": "base.sh",
+        "add_user": "add_user.sh"
+    }
+}   
